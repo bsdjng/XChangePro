@@ -14,4 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("homepage-container").innerHTML = data;
     })
     .catch((error) => console.error("Error loading homepage:", error));
+
+
+  fetch("../graph.html")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("graph-container").innerHTML = data;
+    })
+    .catch((error) => console.error("Error loading homepage:", error));
 });

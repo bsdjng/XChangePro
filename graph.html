@@ -1,163 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exchange Rate Chart</title>
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Navbar Styling -->
-    <link rel="stylesheet" href="styles/navbar.css" />
-  </head>
 
-  <body>
-    <!-- Navbar wordt hier ingeladen -->
-    <div id="navbar-container"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exchange Rate Chart</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Navbar Styling -->
+  <link rel="stylesheet" href="styles/navbar.css" />
+</head>
 
-    <div class="container mt-5">
-      <h2 class="text-center mb-4">Exchange Rates Chart</h2>
-      <div class="mb-4">
-        <label for="base-currency" class="form-label">Base Currency:</label>
-        <select id="base-currency" class="form-select">
-          <!-- Options will be dynamically populated -->
-        </select>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <canvas id="exchangeChart" width="400" height="200"></canvas>
-        </div>
-      </div>
-      <div class="text-center mt-3">
-        <!-- Knoppen voor tijdsfilter -->
-        <button class="btn btn-primary mx-2" onclick="updateChart('30d')">
-          Laatste 30 dagen
-        </button>
-        <button class="btn btn-primary mx-2" onclick="updateChart('1y')">
-          Laatste jaar
-        </button>
+<body>
+  <!-- Navbar wordt hier ingeladen -->
+  <div id="navbar-container"></div>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Exchange Rates Chart</h2>
+    <div class="mb-4">
+      <label for="base-currency" class="form-label">Base Currency:</label>
+      <select id="base-currency" class="form-select">
+        <!-- Options will be dynamically populated -->
+      </select>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <canvas id="exchangeChart" width="400" height="200"></canvas>
       </div>
     </div>
+    <div class="text-center mt-3">
+      <!-- Knoppen voor tijdsfilter -->
+      <button class="btn btn-primary mx-2" onclick="updateChart('30d')">
+        Laatste 30 dagen
+      </button>
+      <button class="btn btn-primary mx-2" onclick="updateChart('1y')">
+        Laatste jaar
+      </button>
+    </div>
+  </div>
 
-    <!-- Script voor Graph -->
-    <script>
-      let chart; // To store the Chart.js instance
-      const API_URL = "https://api.frankfurter.app";
+  <!-- Script voor Graph -->
+  <script>
+    let chart; // To store the Chart.js instance
+    const API_URL = "https://api.frankfurter.app";
 
-      // Fetch supported currencies and populate dropdown
-      async function fetchCurrencies() {
-        const response = await fetch(`${API_URL}/currencies`);
-        const currencies = await response.json();
+    // Fetch supported currencies and populate dropdown
+    async function fetchCurrencies() {
+      const response = await fetch(`${API_URL}/currencies`);
+      const currencies = await response.json();
 
-        const select = document.getElementById("base-currency");
-        for (const [code, name] of Object.entries(currencies)) {
-          const option = document.createElement("option");
-          option.value = code;
-          option.textContent = `${code} - ${name}`;
-          select.appendChild(option);
-        }
+      const select = document.getElementById("base-currency");
+      for (const [code, name] of Object.entries(currencies)) {
+        const option = document.createElement("option");
+        option.value = code;
+        option.textContent = `${code} - ${name}`;
+        select.appendChild(option);
       }
+    }
 
-      // Fetch exchange rates for a specific base currency and date range
-      async function fetchExchangeRates(base, period) {
-        let url;
-        if (period === "30d") {
-          const endDate = new Date().toISOString().split("T")[0];
-          const startDate = new Date();
-          startDate.setDate(startDate.getDate() - 30);
-          url = `${API_URL}/${
-            startDate.toISOString().split("T")[0]
+    // Fetch exchange rates for a specific base currency and date range
+    async function fetchExchangeRates(base, period) {
+      let url;
+      if (period === "30d") {
+        const endDate = new Date().toISOString().split("T")[0];
+        const startDate = new Date();
+        startDate.setDate(startDate.getDate() - 30);
+        url = `${API_URL}/${startDate.toISOString().split("T")[0]
           }..${endDate}?base=${base}`;
-        } else if (period === "1y") {
-          const endDate = new Date().toISOString().split("T")[0];
-          const startDate = new Date();
-          startDate.setFullYear(startDate.getFullYear() - 1);
-          url = `${API_URL}/${
-            startDate.toISOString().split("T")[0]
+      } else if (period === "1y") {
+        const endDate = new Date().toISOString().split("T")[0];
+        const startDate = new Date();
+        startDate.setFullYear(startDate.getFullYear() - 1);
+        url = `${API_URL}/${startDate.toISOString().split("T")[0]
           }..${endDate}?base=${base}`;
-        }
-        const response = await fetch(url);
-        const data = await response.json();
-        return data.rates;
-      }
+      } 1
+      const response = await fetch(url);
+      const data = await response.json();
+      return data.rates;
+    }
 
-      // Initialize chart with default data
-      async function initChart() {
-        const ctx = document.getElementById("exchangeChart").getContext("2d");
-        const base = "EUR"; // Default base currency
-        const rates = await fetchExchangeRates(base, "30d");
+    // Initialize chart with default data
+    async function initChart() {
+      const ctx = document.getElementById("exchangeChart").getContext("2d");
+      const base = "EUR"; // Default base currency
+      const rates = await fetchExchangeRates(base, "30d");
 
-        const dates = Object.keys(rates);
-        const currencyRates = Object.values(rates).map((rate) => rate.USD); // Example: USD rates
+      const dates = Object.keys(rates);
+      const currencyRates = Object.values(rates).map((rate) => rate.USD); // Example: USD rates
 
-        chart = new Chart(ctx, {
-          type: "line",
-          data: {
-            labels: dates,
-            datasets: [
-              {
-                label: "USD Exchange Rate",
-                data: currencyRates,
-                backgroundColor: "rgba(75, 192, 192, 0.2)",
-                borderColor: "rgba(75, 192, 192, 1)",
-                borderWidth: 1,
-              },
-            ],
-          },
-          options: {
-            responsive: true,
-            scales: {
-              y: {
-                beginAtZero: true,
-              },
+      chart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: dates,
+          datasets: [
+            {
+              label: "USD Exchange Rate",
+              data: currencyRates,
+              backgroundColor: "rgba(75, 192, 192, 0.2)",
+              borderColor: "rgba(75, 192, 192, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
             },
           },
-        });
-      }
-
-      // Update the chart when the time period changes
-      async function updateChart(period) {
-        const base = document.getElementById("base-currency").value;
-        const rates = await fetchExchangeRates(base, period);
-
-        const dates = Object.keys(rates);
-        const currencyRates = Object.values(rates).map((rate) => rate.USD); // Example: USD rates
-
-        chart.data.labels = dates; // Update labels
-        chart.data.datasets[0].data = currencyRates; // Update data
-        chart.update(); // Refresh the chart
-      }
-
-      // Initialize page
-      window.onload = async () => {
-        await fetchCurrencies(); // Populate currency dropdown
-        await initChart(); // Initialize chart
-      };
-    </script>
-
-    <!-- Script voor dynamische navbar -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // Dynamisch navbar inladen
-        fetch("views/navbar.html")
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.text();
-          })
-          .then((data) => {
-            document.getElementById("navbar-container").innerHTML = data;
-          })
-          .catch((error) => console.error("Error loading navbar:", error));
+        },
       });
-    </script>
+    }
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+    // Update the chart when the time period changes
+    async function updateChart(period) {
+      const base = document.getElementById("base-currency").value;
+      const rates = await fetchExchangeRates(base, period);
+
+      const dates = Object.keys(rates);
+      const currencyRates = Object.values(rates).map((rate) => rate.USD); // Example: USD rates
+
+      chart.data.labels = dates; // Update labels
+      chart.data.datasets[0].data = currencyRates; // Update data
+      chart.update(); // Refresh the chart
+    }
+
+    // Initialize page
+    window.onload = async () => {
+      await fetchCurrencies(); // Populate currency dropdown
+      await initChart(); // Initialize chart
+    };
+  </script>
+
+  <!-- Script voor dynamische navbar -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Dynamisch navbar inladen
+      fetch("views/navbar.html")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then((data) => {
+          document.getElementById("navbar-container").innerHTML = data;
+        })
+        .catch((error) => console.error("Error loading navbar:", error));
+    });
+  </script>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>
