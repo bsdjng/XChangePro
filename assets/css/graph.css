@@ -1,0 +1,135 @@
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Page container */
+.page-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Page title styling */
+.page-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Form group for dropdown */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-size: 1.1rem;
+    color: #34495e;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Chart container */
+.chart-container {
+    position: relative;
+    height: 100%;
+    margin-bottom: 20px;
+}
+
+/* Button group styling */
+.button-group {
+    justify-content: center;
+    display: flex;
+    gap: 15px;
+
+}
+
+.custom-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #3498db;
+    /* Default background color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 1s ease;
+    /* Transition added for smooth color change */
+}
+
+.custom-button:hover {
+    background-color: #2980b9;
+    /* Darker shade of blue on hover */
+}
+
+/* Navbar container */
+#navbar-container {
+    margin-bottom: 20px;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #3498db;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .page-content {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+        border-radius: 50%;
+        box-shadow: #2c3e50;
+    }
+
+    .custom-button {
+        width: 100%;
+    }
+
+    .chart-container {
+        height: 300px;
+    }
+}
