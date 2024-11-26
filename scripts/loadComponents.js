@@ -16,15 +16,22 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => console.error("Error loading homepage:", error));
 });
+// Footer inladen
+fetch("views/footer.html")
+  .then((response) => response.text())
+  .then((data) => {
+    document.getElementById("footer-container").innerHTML = data;
+  })
+  .catch((error) => console.error("Error loading footer:", error));
 
 // Functie om event listeners toe te voegen
 function initNavbar() {
   console.log("Navbar initialiseren...");
-  
+
   const navMenu = document.getElementById("nav-menu");
   const navToggle = document.getElementById("nav-toggle");
   const navClose = document.getElementById("nav-close");
-  
+
   const login = document.getElementById("login");
   const loginBtn = document.getElementById("login-btn");
   const loginClose = document.getElementById("login-close");
