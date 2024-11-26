@@ -66,7 +66,7 @@ async function initChart() {
     },
   });
 }
-
+  
 // Update de grafiek
 async function updateChart(period) {
   const base = document.getElementById("base-currency").value;
