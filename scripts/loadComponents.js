@@ -1,11 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Navbar inladen
-  fetch("views/navbar.html")
+  // Load the navbar
+  fetch("../navbar.html")
     .then((response) => response.text())
     .then((data) => {
-      document.getElementById("navbar-container").innerHTML = data;
+      const navbarContainer = document.getElementById("navbar-container");
+      navbarContainer.innerHTML = data;
+
+      // Dynamically load the script referenced in navbar.html
+      const script = document.createElement("script");
+      script.src = "../assets/js/main.js"; // Update this path if needed
+      document.body.appendChild(script);
     })
     .catch((error) => console.error("Error loading navbar:", error));
+
+
 
   // Homepage inladen
   fetch("views/homepage.html")
@@ -21,5 +29,5 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((data) => {
       document.getElementById("graph-container").innerHTML = data;
     })
-    .catch((error) => console.error("Error loading homepage:", error));
+    .catch((error) => console.error("Error loading graph page:", error));
 });
