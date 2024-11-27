@@ -23,7 +23,13 @@ fetch("views/footer.html")
     document.getElementById("footer-container").innerHTML = data;
   })
   .catch((error) => console.error("Error loading footer:", error));
-
+// Converter Inladen
+fetch("views/converter.html")
+  .then((response) => response.text())
+  .then((data) => {
+    document.getElementById("converter-container").innerHTML = data;
+  })
+  .catch((error) => console.error("Error loading converter:", error));
 // Functie om event listeners toe te voegen
 function initNavbar() {
   console.log("Navbar initialiseren...");
