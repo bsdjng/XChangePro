@@ -152,8 +152,19 @@ img {
 .nav__logo {
   color: var(--title-color);
   font-weight: var(--font-semi-bold);
-  transition: color .4s;
+  transition: color .4s; 
+  font-size: 0.8rem;
+  padding: 0; 
+  margin: 0; 
+  line-height: 1; 
 }
+.logo-image {
+  width: 150px; /* Stel een maximale breedte in */
+  height: auto; /* Houd de verhouding correct */
+  display: inline-block; /* Zorg dat de afbeelding inline blijft */
+  cursor: pointer;
+}
+
 
 .nav__actions {
   display: flex;
