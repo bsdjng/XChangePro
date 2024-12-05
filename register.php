@@ -10,18 +10,14 @@ try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Test account details
-    $testEmail = 'test@example.com';
-    $testPassword = 'password123';
-
     // Hash the password for security
-    $hashedPassword = password_hash($testPassword, PASSWORD_DEFAULT);
+    $hashedPassword = password_hash($$_POST['password'], PASSWORD_DEFAULT);
 
     // Insert the test account
     $sql = "INSERT INTO accounts (email, password) VALUES (:email, :password)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
-        ':email' => $testEmail,
+        ':email' => $_POST['email'],
         ':password' => $hashedPassword,
     ]);
 
