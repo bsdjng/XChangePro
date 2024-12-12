@@ -1,7 +1,7 @@
 /* styles.css */
 body {
   margin: 0;
-  font-family: 'Syne', sans-serif;
+  font-family: "Syne", sans-serif;
 }
 
 .footer {
@@ -13,9 +13,7 @@ body {
   position: relative;
   bottom: 0;
   width: 100%;
-  border: solid;
-  border-color: hsl(230, 25%, 80%);
-}
+
 
 .footer-content {
   display: flex;
