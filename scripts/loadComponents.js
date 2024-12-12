@@ -15,21 +15,27 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("homepage-container").innerHTML = data;
     })
     .catch((error) => console.error("Error loading homepage:", error));
+
+  // Footer inladen
+  fetch("views/footer.html")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("footer-container").innerHTML = data;
+    })
+    .catch((error) => console.error("Error loading footer:", error));
+
+  // Converter Inladen
+  fetch("views/converter.html")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("converter-container").innerHTML = data;
+    })
+    .catch((error) => console.error("Error loading converter:", error));
+
+  // React Component Initialisatie
+  loadReactComponent();
 });
-// Footer inladen
-fetch("views/footer.html")
-  .then((response) => response.text())
-  .then((data) => {
-    document.getElementById("footer-container").innerHTML = data;
-  })
-  .catch((error) => console.error("Error loading footer:", error));
-// Converter Inladen
-fetch("views/converter.html")
-  .then((response) => response.text())
-  .then((data) => {
-    document.getElementById("converter-container").innerHTML = data;
-  })
-  .catch((error) => console.error("Error loading converter:", error));
+
 // Functie om event listeners toe te voegen
 function initNavbar() {
   console.log("Navbar initialiseren...");
@@ -68,4 +74,16 @@ function initNavbar() {
   }
 
   console.log("Navbar event listeners toegevoegd.");
+}
+
+// Functie om de React-component te laden
+function loadReactComponent() {
+  const reactContainer = document.getElementById("react-container");
+
+  if (reactContainer) {
+    // Ensure React and ReactDOM are available globally
+    ReactDOM.render(<MyReactComponent />, reactContainer);
+  } else {
+    console.error("React container not found!");
+  }
 }

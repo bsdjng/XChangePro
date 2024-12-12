@@ -5,6 +5,7 @@ body {
 }
 
 .footer {
+  position: fixed;
   background-color: #333;
   color: #fff;
   text-align: center;
@@ -32,6 +33,7 @@ body {
 
 .copyright,
 .contact {
-  font-size: 0.9em; /* Kleinere tekst */
+  font-size: 0.9em;
+  /* Kleinere tekst */
   margin: 0;
 }
