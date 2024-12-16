@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
     const ctx = document.getElementById('currencyChart').getContext('2d');
 
     let chart;

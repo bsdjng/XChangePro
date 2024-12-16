@@ -32,15 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => console.error("Error loading converter:", error));
 
-  fetch("../views/graph.html")
-    .then((response) => response.text())
-    .then((data) => {
-      document.getElementById("graph-container").innerHTML = data;
-    })
-    .catch((error) => console.error("Error loading graph:", error));
-
-  // React Component Initialisatie
-  loadReactComponent();
 });
 
 // Functie om event listeners toe te voegen
