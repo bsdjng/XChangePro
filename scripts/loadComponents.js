@@ -32,6 +32,13 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => console.error("Error loading converter:", error));
 
+  fetch("../views/graph.html")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("graph-container").innerHTML = data;
+    })
+    .catch((error) => console.error("Error loading graph:", error));
+
   // React Component Initialisatie
   loadReactComponent();
 });
@@ -72,18 +79,6 @@ function initNavbar() {
       login.classList.remove("show-login");
     });
   }
-
-  console.log("Navbar event listeners toegevoegd.");
 }
 
-// Functie om de React-component te laden
-function loadReactComponent() {
-  const reactContainer = document.getElementById("react-container");
 
-  if (reactContainer) {
-    // Ensure React and ReactDOM are available globally
-    ReactDOM.render(<MyReactComponent />, reactContainer);
-  } else {
-    console.error("React container not found!");
-  }
-}

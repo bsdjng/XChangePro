@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currency Exchange Graph</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="graph.js" defer></script>
+    <script src="../scripts/graph.js" defer></script>
+    <link rel="stylesheet" href="../assets/css/graph.css" />
 </head>
 
 <body>
-    <h1>Currency Exchange Graph</h1>
+    <h1>Currency Compare Graph</h1>
     <form id="currencyForm">
         <label for="baseCurrency">Base Currency:</label>
         <select id="baseCurrency" required></select>
@@ -24,7 +25,7 @@
         <button type="submit">Update Graph</button>
     </form>
 
-    <canvas id="currencyChart" height="100"></canvas>
+    <canvas id="currencyChart"></canvas>
 </body>
 
 </html>

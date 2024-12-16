@@ -119,6 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
         updateGraph(baseCurrency, targetCurrency, days);
     });
 
-    // Initialize with default values
+    // base values
     populateCurrencyDropdowns().then(() => updateGraph('USD', 'EUR', 30));
 });
