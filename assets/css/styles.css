@@ -7,6 +7,7 @@
 
   /*========== Colors ==========*/
   /*Color mode HSL(hue, saturation, lightness)*/
+  --hover-color: hsl(51, 100%, 50%);
   --first-color: hsl(230, 75%, 56%);
   --title-color: hsl(230, 75%, 15%);
   --text-color: hsl(230, 12%, 40%);
@@ -183,7 +184,7 @@ img {
 }
 
 :is(.nav__logo, .nav__search, .nav__login, .nav__toggle, .nav__link):hover {
-  color: var(--first-color);
+  color: var(--hover-color);
 }
 
 /* Navigation for mobile devices */
