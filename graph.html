@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="graph.js" defer></script>
+</head>
+
+<body>
+    <h1>Currency Exchange Graph</h1>
+    <form id="currencyForm">
+        <label for="baseCurrency">Base Currency:</label>
+        <select id="baseCurrency" required></select>
+
+        <label for="targetCurrency">Target Currency:</label>
+        <select id="targetCurrency" required></select>
+
+        <label for="days">Days:</label>
+        <input type="number" id="days" value="30" min="1" max="365" required>
+
+        <button type="submit">Update Graph</button>
+    </form>
+
+    <canvas id="currencyChart" height="100"></canvas>
+</body>
+
+</html>
