@@ -1,4 +1,10 @@
 /* General styles */
+#sideGraph {
+    color: pink;
+    width: 4000px;
+    height: 50vh;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
