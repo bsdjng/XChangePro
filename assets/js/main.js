@@ -1,5 +1,4 @@
 window.onload = function () {
-  console.log("test");
   /*=============== SHOW MENU ===============*/
 
   const navMenu = document.getElementById("nav-menu"),
@@ -15,7 +14,6 @@ window.onload = function () {
   navClose.addEventListener("click", () => {
     navMenu.classList.remove("show-menu");
   });
-  console.log("test");
 
   /*=============== SEARCH ===============*/
   const search = document.getElementById("search"),
@@ -31,7 +29,6 @@ window.onload = function () {
   searchClose.addEventListener("click", () => {
     search.classList.remove("show-search");
   });
-  console.log("test");
 
   /*=============== LOGIN ===============*/
   const login = document.getElementById("login"),
@@ -48,7 +45,6 @@ window.onload = function () {
   loginClose.addEventListener("click", () => {
     login.classList.remove("show-login");
   });
-  console.log("test");
 
   // Open de login modal
   document.getElementById("login-btn").addEventListener("click", function () {
