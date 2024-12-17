@@ -1,9 +1,5 @@
 /* General styles */
-#sideGraph {
-    color: pink;
-    width: 4000px;
-    height: 50vh;
-}
+
 
 body {
     font-family: Arial, sans-serif;
@@ -73,7 +69,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #FFD700;
 }
 
 button:active {
