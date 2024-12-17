@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.text())
     .then((data) => {
       document.getElementById("converter-container").innerHTML = data;
+      loadConverterScript();
     })
     .catch((error) => console.error("Error loading converter:", error));
 

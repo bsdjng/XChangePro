@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-    const ctx = document.getElementById('currencyChart').getContext('2d');
-
+    const chartContainer = document.getElementById('currencyChart');
     let chart;
 
     async function fetchCurrencies() {
@@ -62,49 +60,89 @@ document.addEventListener("DOMContentLoaded", () => {
             const labels = data.map(item => item.date);
             const rates = data.map(item => item.rate);
 
+            // Destroy the existing chart if it exists
             if (chart) {
                 chart.destroy();
             }
 
-            chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: `${base} to ${target} Exchange Rate`,
-                        data: rates,
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        tooltip: {
-                            mode: 'index',
-                            intersect: false,
-                        }
+            // Create a new ApexCharts instance
+            const options = {
+                series: [{
+                    name: `${base} to ${target} Exchange Rate`,
+                    data: data.map(item => ({ x: new Date(item.date).getTime(), y: item.rate }))
+                }],
+                chart: {
+                    type: 'area',
+                    height: 350,
+                    zoom: {
+                        type: 'x',
+                        enabled: true,
+                        autoScaleYaxis: true
                     },
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Date'
-                            }
+                    toolbar: {
+                        autoSelected: 'zoom'
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                markers: {
+                    size: 0,
+                },
+                title: {
+                    text: `${base} to ${target} Exchange Rate`,
+                    align: 'left',
+                    style: {
+                        fontFamily: 'Syne, san-serif',
+                        color: '#007bff',
+                        fontWeight: 'bold',
+                    }
+                },
+                xaxis: {
+                    type: 'datetime',
+                    title: {
+                        text: 'Date',
+                        style: {
+                            fontFamily: 'Syne, san-serif',
+                            color: '#007bff',
+                            fontWeight: 'bold',
+                            fontSize: '14px',
                         },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Exchange Rate'
-                            }
-                        }
+
+                    },
+
+
+                },
+                yaxis: {
+                    title: {
+                        text: 'XChangePro Rate',
+                        style: {
+                            fontFamily: 'Syne, san-serif',
+                            color: '#007bff',
+                            fontWeight: 'bold',
+                            fontSize: '14px',
+                        },
+
+                    }
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shadeIntensity: 1,
+                        opacityFrom: 0.5,
+                        opacityTo: 0,
+                        stops: [0, 90, 100]
+                    }
+                },
+                tooltip: {
+                    x: {
+                        format: 'yyyy-MM-dd'
                     }
                 }
-            });
+            };
+
+            chart = new ApexCharts(chartContainer, options);
+            chart.render();
         } catch (error) {
             alert(`Error: ${error.message}`);
         }
@@ -120,6 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
         updateGraph(baseCurrency, targetCurrency, days);
     });
 
-    // base values
+    // Initialize dropdowns and default graph
     populateCurrencyDropdowns().then(() => updateGraph('USD', 'EUR', 30));
 });

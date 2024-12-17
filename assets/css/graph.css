@@ -1,4 +1,6 @@
 /* General styles */
+
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -67,7 +69,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #FFD700;
 }
 
 button:active {
