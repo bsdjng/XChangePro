@@ -8,10 +8,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../scripts/graph.js" defer></script>
     <link rel="stylesheet" href="../assets/css/graph.css" />
-    <script src="scripts/loadNavbarGraph.js"></script>
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 
 <body>
+    <div id="navbar-container"></div>
+
     <h1>Currency Compare Graph</h1>
     <form id="currencyForm">
         <label for="baseCurrency">Base Currency:</label>
@@ -27,6 +29,8 @@
     </form>
 
     <canvas id="currencyChart"></canvas>
+    <div id="footer-container"></div>
 </body>
 
 </html>
+<script src="../scripts/loadComponents.js"></script>

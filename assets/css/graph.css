@@ -77,10 +77,23 @@ button:active {
 /* Canvas styles */
 canvas {
     margin-top: 20px;
-    max-width: 90%;
+    max-width: 70%;
+    max-height: 50%;
     height: auto;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#currencyChart {
+    margin-bottom: 100px;
+}
+
+#currencyForm {
+    margin-top: 100px
+}
+
+#footer-container {
+    width: 100%;
 }

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((error) => console.error("Error loading homepage:", error));
 
   // Footer inladen
-  fetch("views/footer.html")
+  fetch("../views/footer.html")
     .then((response) => response.text())
     .then((data) => {
       document.getElementById("footer-container").innerHTML = data;
