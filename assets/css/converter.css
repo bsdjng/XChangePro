@@ -3,9 +3,13 @@ body {
   background-color: #f9f9f9;
   margin: 0;
   padding: 0;
+  margin-bottom: 30px;
 }
+.currency-container{
 
+}
 .container {
+  padding-top: 0px;
   display: flex;
   justify-content: center;
   align-items: center;

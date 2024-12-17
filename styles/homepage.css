@@ -107,7 +107,7 @@ body {
 h1,
 h2,
 p {
-  font-family: Arial;
+    font-family: "Syne", sans-serif;
   font-size: 60px;
   animation: fadeIn 5s ease-in-out;
   -webkit-animation: fadeIn 5s ease-in-out;
@@ -116,7 +116,7 @@ p {
 /* Algemene fade-in styling */
 h1 span {
   display: inline-block;
-  opacity: 0;
+  opacity: 0;   
   animation: fadeInWord 1s ease-in-out forwards;
 }
 
