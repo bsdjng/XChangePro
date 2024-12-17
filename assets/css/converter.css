@@ -9,7 +9,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 1vh;
+  margin-bottom: 50px;
 }
 
 .card {
@@ -59,33 +60,26 @@ button {
   width: 90%;
   padding: 10px;
   font-size: 16px;
-  color: black; 
-  background: transparent; 
-  border: 2px solid black; 
+  color: black;
+  background: transparent;
+  border: 2px solid black;
   border-radius: 20px;
   cursor: pointer;
-  transition: all 0.5s ease; 
+  transition: all 0.5s ease;
 }
 
 button:hover {
-  color: #ffffff; 
+  color: #ffffff;
   background: #007bff;
   border-color: #007bff;
 }
-
-
-
-
-
-
-
 
 #result {
   margin-top: 20px;
   font-size: 18px;
   color: #333333;
   text-align: center;
-}   
+}
 
 @media (max-width: 768px) {
   .card {
